@@ -1,5 +1,9 @@
 from flask import Blueprint, request, render_template, g, redirect, url_for
+
+from flask_trois.helpers import setup_shopify_adapter
+
 from shopify_trois.models import Webhook
+
 
 webhooks = Blueprint(
     'webhook',
@@ -10,12 +14,14 @@ webhooks = Blueprint(
 
 
 @webhooks.route('/')
+@setup_shopify_adapter
 def index():
     webhooks = g.shopify.index(Webhook)
     return render_template('index.html', webhooks=webhooks)
 
 
 @webhooks.route('/create', methods=['GET', 'POST'])
+@setup_shopify_adapter
 def create():
 
     if request.method == 'POST':
@@ -27,12 +33,14 @@ def create():
 
 
 @webhooks.route('/view/<int:id>')
+@setup_shopify_adapter
 def view(id):
     webhook = g.shopify.fetch(Webhook, id)
     return render_template('view.html', webhook=webhook)
 
 
 @webhooks.route('/delete/<int:id>')
+@setup_shopify_adapter
 def delete(id):
     webhook = Webhook(id=id)
     g.shopify.delete(webhook)
@@ -40,6 +48,7 @@ def delete(id):
 
 
 @webhooks.route('/update/<int:id>', methods=['GET', 'POST'])
+@setup_shopify_adapter
 def update(id):
     webhook = Webhook(id=id)
 
