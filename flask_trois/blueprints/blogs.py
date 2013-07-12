@@ -2,13 +2,12 @@ from flask import Blueprint, request, render_template, g, redirect, url_for
 
 from flask_trois.helpers import setup_shopify_adapter
 
-from shopify_trois.models import Blog
+from shopify_trois.models import Blog, Article
 
 
 blogs = Blueprint(
-    'blog',
+    'blogs',
     __name__,
-    template_folder='templates/blogs',
     url_prefix='/blogs'
 )
 
@@ -17,7 +16,7 @@ blogs = Blueprint(
 @setup_shopify_adapter
 def index():
     blogs = g.shopify.index(Blog)
-    return render_template('index.html', blogs=blogs)
+    return render_template('blogs/index.html', blogs=blogs)
 
 
 @blogs.route('/create', methods=['GET', 'POST'])
@@ -27,13 +26,15 @@ def create():
     if request.method == 'POST':
         blog = Blog(**request.form)
         g.shopify.add(blog)
-        return redirect(url_for('view', id=blog.id))
+        return redirect(url_for('.view', id=blog.id))
 
-    return render_template('create.html')
+    return render_template('blogs/create.html')
 
 
 @blogs.route('/view/<int:id>')
 @setup_shopify_adapter
 def view(id):
     blog = g.shopify.fetch(Blog, id)
-    return render_template('view.html', blog=blog)
+
+    articles = g.shopify.index(Article, parent_id=blog.id)
+    return render_template('blogs/view.html', blog=blog, articles=articles)

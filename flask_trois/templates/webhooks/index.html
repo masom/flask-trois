@@ -1,0 +1,24 @@
+<h1>Webhooks</h1>
+<a href="{{ url_for('.create') }}">New Webhook</a>
+<table>
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Address</th>
+            <th>Format</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    {% for webhook in webhooks %}
+    <tr>
+        <td>{{ webhook.topic }}</td>
+        <td>{{ webhook.address }}</td>
+        <td>{{ webhook.format }}</td>
+        <td>{{ webhook.created }}</td>
+        <td>
+            <a href="{{ url_for('.update', id=webhook.id) }}">Update</a>
+            <a href="{{ url_for('.delete', id=webhook.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

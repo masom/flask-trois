@@ -1,1 +1,27 @@
-{{ shop.to_dict() }}
+<h1>{{ shop.name }}</h1>
+
+<a href="{{ url_for('blogs.index') }}">Blogs</a>
+|<a href="{{ url_for('blogs.index') }}">Webhooks</a>
+
+<table>
+    <tr>
+        <td>Shop Name</td>
+        <td>{{ shop.name }}</td>
+    </tr>
+    <tr>
+        <td>Owner</td>
+        <td>{{ shop.owner }}
+    </tr>
+    <tr>
+        <td>Currency</td>
+        <td>{{ shop.currency }}</td>
+    </tr>
+    <tr>
+        <td>City</td>
+        <td>{{ shop.city }}</td>
+    </tr>
+    <tr>
+        <td>Country</td>
+        <td>{{ shop.country }}</td>
+    </tr>
+</table>

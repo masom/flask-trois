@@ -1,0 +1,17 @@
+<h1>Update Webhook</h1>
+
+<form action="{{ url_for('.update', id=webhook.id) }}" method="post">
+    <select name="topic">
+        <optgroup label="Orders">
+            <option value="orders/create" selected>Create
+        </optgroup>
+    </select>
+    <input type="text" name="address" placeholder="Enter the webhook url."  value="{{ webhook.address }}"/>
+
+    <select name="format">
+        <option value="json" selected>JSON</option>
+        <option value="xml">XML</option>
+    </select>
+    <button type="submit">Update</button>
+</form>
+

@@ -1,0 +1,20 @@
+<h1>Blog - {{ blog.title }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+            <td><a href="{{ url_for('articles.view', blog_id=blog.id, id=article.id) }}">{{ article.title }}</a></td>
+            <td>{{ article.author }}</td>
+            <td>{{ article.published_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

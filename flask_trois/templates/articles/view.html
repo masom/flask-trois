@@ -1,0 +1,7 @@
+<h1>Article - {{ article.title }}</h1>
+
+
+<a href="{{ url_for('blogs.view', id=article.blog_id) }}">Back to blog</a>
+<div>
+    {{ article.body_html | safe }}
+</div>
