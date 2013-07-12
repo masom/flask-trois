@@ -12,7 +12,7 @@ articles = Blueprint(
 )
 
 
-@articles.route('/create', methods=['GET', 'POST'])
+@articles.route('/create/<int:blog_id>', methods=['GET', 'POST'])
 @setup_shopify_adapter
 def create(blog_id):
 
@@ -24,7 +24,7 @@ def create(blog_id):
 
         return redirect(url_for('.view', id=article.id))
 
-    return render_template('articles/create.html')
+    return render_template('articles/create.html', blog_id=blog_id, id=article.id)
 
 
 @articles.route('/view/<int:blog_id>/<int:id>')
