@@ -1,5 +1,7 @@
 <h1>Blog - {{ blog.title }}</h1>
 
+<a href="{{ url_for('articles.create', blog_id=blog.id) }}">New Article</a>
+
 <table>
     <thead>
         <tr>

@@ -15,9 +15,13 @@ articles = Blueprint(
 @articles.route('/create', methods=['GET', 'POST'])
 @setup_shopify_adapter
 def create(blog_id):
+
     if request.method == 'POST':
         article = Article(**request.form.to_dict(flat=True))
+        article.blog_id = blog_id
+
         g.shopify.add(article)
+
         return redirect(url_for('.view', id=article.id))
 
     return render_template('articles/create.html')
