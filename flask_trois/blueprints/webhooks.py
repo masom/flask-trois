@@ -7,7 +7,7 @@ from shopify_trois.models import Webhook
 
 
 webhooks = Blueprint(
-    'webhook',
+    'webhooks',
     __name__,
     template_folder='templates/webhooks',
     url_prefix='/webhooks'

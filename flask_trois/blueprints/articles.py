@@ -22,9 +22,9 @@ def create(blog_id):
 
         g.shopify.add(article)
 
-        return redirect(url_for('.view', id=article.id))
+        return redirect(url_for('.view', blog_id=blog_id, id=article.id))
 
-    return render_template('articles/create.html', blog_id=blog_id, id=article.id)
+    return render_template('articles/create.html', blog_id=blog_id)
 
 
 @articles.route('/view/<int:blog_id>/<int:id>')
