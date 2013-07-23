@@ -1,0 +1,18 @@
+<h1>New Metafield</h1>
+
+<form action="{{ url_for('.metafields_add', blog_id=blog_id) }}" method="post">
+    <label for="namespace">Namespace</label>
+    <input type="text" name="namespace" />
+
+    <label for="key">Key</label>
+    <input type="text" name="key" />
+
+    <label for="value">Value</label>
+    <input type="text" name="value" />
+
+    <select name="value_type">
+        <option value="integer">Integer</option>
+        <option value="string">String</option>
+    </select>
+    <button type="submit">Create</button>
+</form>
