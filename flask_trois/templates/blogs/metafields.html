@@ -1,0 +1,20 @@
+<h1>Blog - {{ blog.title }} - Metafields</h1>
+
+<a href="{{ url_for('.metafields_add', blog_id=blog.id) }}">New Metafield</a>
+
+<table>
+    <thead>
+        <tr>
+            <th></th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for metafield in metafields %}
+        <tr>
+            <td>{{ metafield.to_dict() }}</td>
+            <td><a href="{{ url_for('.metafields_delete', blog_id=blog.id, metafield_id=metafield.id) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
